@@ -41,8 +41,8 @@
                     $table = "DocumentiDidattica";
                 }
                 $filename = (new Path)->create_path($nome_doc . $data_doc);
-                $destination = $target_dir . basename($filename);
-                $file = $_FILES['document_file']['tmp_name'];
+                $destination = $target_dir . basename($filename);//si usa basename per prevenire gli attacchi
+                $file = $_FILES['document_file']['tmp_name'];/////Directory traversal attack
                 if (move_uploaded_file($file, $destination)){
                     echo $sql = 'INSERT INTO ' . $table . ' (document_name, pathToFile, document_category, document_index, document_day, document_month, document_year) VALUES ("' . $nome_doc . '", "'. $destination . '", "' . $categoria_doc . '", "' . $indice_doc . '", "' . $day . '", "' . $month . '", "' . $year . '")';
                     if ($conn->query($sql)){

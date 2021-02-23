@@ -24,12 +24,20 @@ function login_btn_clicked () {
 function validate () {
   var CF = document.getElementById('CF').value
   var pwd = document.getElementById('pwd').value
-  if (CF.length > 0) {
-    if (pwd.length > 0) {
-      return true
-    }
+  if (CF.length ===16) {
+      if(pwd>0){
+        return true;
+      }
   }
-  return false
+  else{
+    if(pwd == null || pwd == ""){
+      alert("Codice fiscale incompleto\nPassword non inserita")
+      return false
+    }
+    alert("Codice fiscale incompleto")
+    return false
+  }
+  
 }
 
 $(document).ready(function() {

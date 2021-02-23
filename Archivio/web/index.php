@@ -19,7 +19,7 @@
                 <hr class="my-4">
             </div>
             <div id='input_div' class="jumbotron jumbotron-fluid">
-                <form class='center' class="form-inline" style='margin-top:1%' onsubmit='validate()'
+                <form class='center' class="form-inline" style='margin-top:1%' onsubmit='return validate()'
                     action='homepage.php' method='POST'>
                     <!--
                     <label for="name" class="mr-sm-2">Nome:</label>
@@ -31,7 +31,7 @@
                     -->
                     <label for="CF" class="mr-sm-2">Codice Fiscale:</label>
                     <input class="form-control mb-2 mr-sm-2" name='CF' placeholder="Inserisca il suo Codice Fiscale." id="CF"
-                        style='width: 50%' autocomplete="off" required>
+                        style='width: 50%' autocomplete="off" required maxlength='16'>
                     <br><label for="pwd" class="mr-sm-2">Password:</label>
                     <input type="password" class="form-control mb-2 mr-sm-2" name='pwd'
                         placeholder="Inserisca la Password." id="pwd" style='width: 50%' maxlength='20' required>

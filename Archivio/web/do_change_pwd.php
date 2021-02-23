@@ -11,7 +11,7 @@
 
 <body style="background-color: lightgray">
     <?php
-    error_reporting(0);
+    error_reporting(0);//deactivate <show error message>
     include('../bin/config.php');
     session_cache_limiter('private, must-revalidate');
     session_cache_expire(60);
