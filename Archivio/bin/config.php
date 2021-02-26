@@ -1,8 +1,8 @@
 <?php
 
-$servername = "localhost:3306";
+$servername = "localhost";
 $username = "root";
-$password = "Cristian3349256466";
+$password = "";
 $dbname = "digital-arc";
 
 $target_dir = "../docs/";
