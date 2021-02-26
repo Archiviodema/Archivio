@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <link rel='stylesheet' href='css/homepage.css' />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <script src="../bin/script-homepage.js"></script>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <title>Digital Arc</title>
-</head>
+<?php include('../bin/startup.php');
+?>
 
 <body onload="bind_btns()" style="background-color: lightgray">
     <?php include('../bin/config.php');
