@@ -2,10 +2,9 @@
 <html>
 
 <?php include('../bin/startup.php');?>
-
-<body style="background-color: lightgray">
-    <center>
-        <div id='main_div' class="jumbotron jumbotron-fluid" style='margin-left: 25%; margin-right: 25%; margin-top:1%; border-style: solid; border-width: 1px; border-color: #b8b8b8'>
+<body>
+    <!--<center>-->
+        <div id='main_div' class="jumbotron jumbotron-fluid">
             <div id='text_div' class='container'>
                 <h1 class="display-1">Digital Arc</h1>
                 <br><p class="lead" style="font-style: italic">Nati dai documenti, per i documenti</p> <!-- Slogan Digital-Arc -->
@@ -43,7 +42,7 @@
                 </form>
             </div>
         </div>
-    </center>
+    <!--</center>-->
 </body>
 
 </html>
