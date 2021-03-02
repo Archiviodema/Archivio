@@ -7,7 +7,16 @@
 var btn = document.getElementById('login_btn')
 if (btn) btn.addEventListener('mousemove', login_btn_clicked)
 
+function showPassword() {
+  var x = document.getElementById("pwd");
+  //if (x.type === "password") {
+  //    x.type = "text";
+  //} else {
+  //    x.type = "password";
+  //}
+  x.type === "password" ? x.type = "text" : x.type = "password";
 
+}
 
 function login_btn_clicked () {
   if (validate()) {

@@ -28,15 +28,6 @@
                     <input type="password" class="form-control mb-2 mr-sm-2" name='pwd'
                         placeholder="Inserisca la Password." id="pwd" style='width: 50%' maxlength='20' required>
                         <input class="form-check-input" type="checkbox" onclick="showPassword()"> Mostra Password.
-                        <script>
-                        function showPassword() {
-                        var x = document.getElementById("pwd");
-                        if (x.type === "password") {
-                            x.type = "text";
-                        } else {
-                            x.type = "password";
-                        }}
-                        </script>
                     <br><br><button type="submit" class="btn btn-outline-primary mb-2" onclick='login_btn_clicked()'
                         id='login_btn'>Invia</button>
                 </form>
