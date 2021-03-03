@@ -1,6 +1,6 @@
 <html>
 
-<?php include('../bin/startup.php');?>
+<?php include('../html/header.php');?>
 
 <body style="background-color: lightgray">
     <?php
