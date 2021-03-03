@@ -54,15 +54,10 @@ if(isset($_POST['login'])) {
 <!DOCTYPE html>
 <html>
 
-<?php include('../bin/header.php');?>
+<?php include('../html/header.php');?>
 <body>
     <!--<center>-->
-        <?php 
-            //segnalazione errore inserimento dati login login si valido no
-            if(isset($_POST['login']) && $valid_login == false) {
-                print "<p>Errore, dati di accesso sbagliati</p>";
-            }
-        ?>
+        
         <div id='main_div' class="jumbotron jumbotron-fluid">
             <div id='text_div' class='container'>
                 <h1 class="display-1">Digital Arc</h1>
@@ -80,6 +75,13 @@ if(isset($_POST['login'])) {
                     <input class="form-control mb-2 mr-sm-2" name='surname' maxlength='20'
                         placeholder="Inserisci il Cognome" id="surname" style='width: 50%' autocomplete="off" required>
                     -->
+
+                    <?php 
+                        //segnalazione errore inserimento dati login login si valido no
+                        if(isset($_POST['login']) && $valid_login == false) {
+                            print "<p>Errore, dati di accesso sbagliati</p>";
+                        }
+                    ?>
                     <label for="CF" class="mr-sm-2">Codice Fiscale:</label>
                     <input class="form-control mb-2 mr-sm-2" name='CF' placeholder="Inserisca il suo Codice Fiscale." id="CF"
                         style='width: 50%' autocomplete="off" required maxlength='16'>

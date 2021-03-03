@@ -7,7 +7,7 @@ class Database{
     protected $dbname = "Sql1520781_4";
     protected $connection;
 
-    public function connect(){
+    public function __construct(){
         $this->connection = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
     }
 
