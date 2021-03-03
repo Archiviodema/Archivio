@@ -52,13 +52,13 @@ class CodiceCatastale
 class Path
 {
     public static function create_path($document_name){ // example: Assenza D'Arrigo 19/10/2019
-        $special_chars = ['\\', '/', ':', '*', '?',  '<', '>', '|'];
+        $special_chars = ['\\', '/', ':', '*', '?',  '<', '>', '|', "'"];
         $name = strtolower($document_name); // name: assenza d'arrigo 19/10/2019
         $name = str_replace(" ", "_", $name);   // name: assenza_d'arrigo_19/10/2019 
         $name = str_replace("/", "-", $name); // as you can't save slashes --> name: assenza_d'arrigo19-10-2019
         foreach($special_chars as $char){
             $name = str_replace($char, "", $name);
-        }
+        } //name: assenza_darrigo19-10-2019
         return $name . ".pdf";
     }
 }

@@ -15,4 +15,8 @@ class Database{
         $result = $this->connection->query($query) or die($this->connection->error);
         return $result->fetch_assoc();
     }
+
+    public function insert($query){
+        return $this->connection->query($query);
+    }
 }

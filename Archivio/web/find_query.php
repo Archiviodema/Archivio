@@ -29,74 +29,37 @@
                 $table = "DocumentiAmministrazione";
             }
 
-            $query = 'SELECT * FROM ' . $table;
-            $valid_docs = [];
-            $normalized_docs = $conn->query($query);
-            if ($kws_exist){
-                foreach($normalized_docs as $doc){ // per OGNI documento doc
-                    foreach($keywords as $kw){  // per ogni parola chiave
-                        $lowered_name = strtolower($doc['document_name']);
-                        if ($kw === '') array_push($valid_docs, $doc);  // aggiungi il file alla lista dei documenti "validi"
-                        else if (strpos($lowered_name, $kw) !== false){    // se contiene una parola chiave, entrambe le stringhe sono interamente minuscole
-                            array_push($valid_docs, $doc);  // aggiungi il file alla lista dei documenti "validi"
-                        }
-                        if (in_array($doc, $valid_docs)) break;
-                    }
+            $query = 'SELECT * FROM ' . $table .' WHERE ';
+            
+            if ($kws_exist && count($keywords)) {
+                $query .= "(";
+                $a = 0;
+                foreach($keywords as $kw){  // per ogni parola chiave
+                    if($a > 0) { $query .= " OR"; }
+                    $query .= " document_name LIKE '%".$kw."%' ";
+                    $a++;
                 }
-            }else{
-                $valid_docs = $docs;
+                $query .= ") ";
             }
             //echo $categoria_doc;
             if ($categoria_doc != ''){
-                $index = 0;
-                foreach($valid_docs as $doc){
-                    if ($doc['document_category'] != $categoria_doc){
-                        unset($valid_docs[$index]);
-                    }
-                    $index += 1;
-                }
+                $query .= " AND document_category = '".$categoria_doc."' ";
             }
             //echo $indice_doc;
             if ($indice_doc != ''){
-                $index = 0;
-                foreach($valid_docs as $doc){
-                    if ($doc['document_index'] != $indice_doc){
-                        unset($valid_docs[$index]);
-                    }
-                    $index += 1;
-                }
+                $query .= " AND document_index = '".$indice_doc."' ";
             }
             if ($anno_doc != ''){
-                $index = 0;
-                foreach($valid_docs as $doc){
-                    if ($doc['document_year'] != $anno_doc){
-                        unset($valid_docs[$index]);
-                    }
-                    $index += 1;
-                }
+                $query .= " AND document_year = '".$anno_doc."' ";
             }
             if ($mese_doc != ''){
-                $index = 0;
-                foreach($valid_docs as $doc){
-                    if ($doc['document_month'] != $mese_doc){
-                        unset($valid_docs[$index]);
-                    }
-                    $index += 1;
-                }
+                $query .= " AND document_month = '".$mese_doc."' ";
             }
             if ($giorno_doc != ''){
-                $index = 0;
-                foreach($valid_docs as $doc){
-                    if ($doc['document_day'] != $giorno_doc){
-                        unset($valid_docs[$index]);
-                    }
-                    $index += 1;
-                }
+                $query .= " AND document_day = '".$giorno_doc."' ";
             }
-            // A questo punto valid_docs contiene tutti i documenti che coincidono con le keyword
-            // scrivere una pagina in forma tabellare (vedi Tabelle Bootstrap) che contenga la struttura dei 
-            // documenti e un tasto di download che contenaga il riferimento a documento.pathToFile
-            // è possibile scaricare quanti file si vuole prima di chiudere la pagina.
+            
+            $valid_docs = $conn->query($query);
             ?>
 
             <center>
