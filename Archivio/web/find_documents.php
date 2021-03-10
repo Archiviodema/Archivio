@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <?php include('../html/header.php');?>
-
+<link rel="stylesheet" href="find_documents.css">
 <body onload="bind_btns()" style="background-color: lightgray">
 
 <center>
