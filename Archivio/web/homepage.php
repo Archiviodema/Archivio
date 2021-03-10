@@ -10,7 +10,7 @@
     <div id="main_div" class="jumbotron jumbotron-fluid" style="margin-left: 17.5%; margin-right: 17.5%; margin-top:1%; border-style: solid; border-width: 1px; border-color: #b8b8b8">
         <div id="text_div" class="container">
             <h1 class='display-4'>Ciao<br><?php echo $_SESSION['user_name'].' '.$_SESSION['user_surname']; ?></h1>
-            <br><hr class="my-4">'
+            <br><hr class="my-4">
             <?php if ($_SESSION['user_role'] == 'admin'){ ?>
                 <div class="form-group">
                     <p class="lead">Aggiungi un utente.</p>
