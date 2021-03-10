@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <?php include('../html/header.php');?>
-<link rel="stylesheet" href="inser_documents.css">
+<link rel="stylesheet" href="css/insert_documents.css">
 <body style="background-color: lightgray">
 
     <center>

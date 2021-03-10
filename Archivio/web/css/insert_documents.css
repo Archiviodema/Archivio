@@ -1,9 +1,7 @@
-.form-group{
-
-    align-items: center;
+input {
+    margin: auto;
+}
+select{
+    margin: auto;
 }
 
-.form-control{
-
-    align-items: center;
-}
