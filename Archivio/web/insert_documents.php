@@ -8,6 +8,11 @@
 
     <center>
     <div id="main_div" class="jumbotron jumbotron-fluid" style="width: 50%; margin-top:1%; border-style: solid; border-width: 1px; border-color: #b8b8b8">
+    <p>
+        <?php
+        echo $_POST['errore'];
+        ?>
+    <p>
     <h1 class="display-4">Inserisci i dati del documento<br>da inserire.</h1><br>
     <hr class="my-4"><br>
     <form  class='center' style="display: inline" class="form-inline" action="insert.php" enctype = "multipart/form-data" method="POST">

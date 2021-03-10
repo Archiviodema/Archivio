@@ -1,8 +1,7 @@
 <?php include('../bin/starter.php');?>
 <?php include('../bin/reserved.php');?>
 <?php
-    $session_user = $_SESSION['session_user'];
-    $valid_input = true;
+
     if(isset($_POST['document_name'])) $nome_doc = $_POST['document_name']; else $valid_input = false;
     if(isset($_POST['document_typology'])) $tipologia_doc = $_POST['document_typology']; else $valid_input = false;
     if(isset($_POST['document_category'])) $categoria_doc = $_POST['document_category']; else $valid_input = false;
@@ -28,15 +27,21 @@
                 exit();
             }   
             else{
-                header("Location: redirect_homepage.php");
+                ?> 
+                <form action="insert_documents.php" method="POST">
+                    <input type="text" value="errore" name="errore">
+                </form>
+
+                <?php
+                header("Location: insert_documents.php");
                 exit();
             }
         } else{
-            header("Location: redirect_homepage.php");
+            header("Location: insert_documents.php");
             exit();
         }
     }else{
-        header("Location: redirect_homepage.php");
+        header("Location: insert_documents.php");
         exit();
     }
 ?>
