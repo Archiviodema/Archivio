@@ -14,19 +14,19 @@
         <div class="form-group">
             <div id="left_div" class="form-group">
                 <br><label for="document_name" class="mr-sm-2">Nome del documento:</label>
-                <input class="form-control form-control-sm" name='document_name' placeholder="Inserisci il Nome del Documento." id="document_name"
+                <input class="form-control " name='document_name' placeholder="Inserisci il Nome del Documento." id="document_name"
                     style='width: 25%' autocomplete="off" required>
             </div>
             <div id="left_div" class="form-group">
                 <label for="form_tipologia_documento">Tipologia documento.</label>
-                <select id="form_tipologia_documento" name="document_typology" class="form-control form-control-sm" style="width: 25%">
+                <select id="form_tipologia_documento" name="document_typology" class="form-control" style="width: 25%">
                     <option id="A" >A - Amministrazione</option>
                     <option id="B" >B - Didattica</option>
                 </select>
             </div>
             <div id="right_div" class="form-group">
                 <label for="form_categoria_documento">Categoria documento.</label>
-                <select id="form_categoria_documento" name="document_category" class="form-control form-control-sm" style="width: 25%">
+                <select id="form_categoria_documento" name="document_category" class="form-control" style="width: 25%">
                     <option id="A1" >A1 – Norme, disposizioni organizzative e ispezioni</option>
                     <option id="A2" >A2 - Organi collegiali e direttivi</option>
                     <option id="A3" >A3 - Carteggio ed atti</option>
@@ -43,11 +43,11 @@
         <div id="container_div" class="form-group">
             <div id="left_div" class="form-group">
                 <label for="form_indice_documento">Indice documento.</label>
-                <select id="form_indice_documento" name="document_index" class="form-control form-control-sm" style="width: 25%">
+                <select id="form_indice_documento" name="document_index" class="form-control" style="width: 25%">
                 <?php for($i = 1; $i < 48; $i++) { echo '<option id="' . $i . '">' . $i . '</option>'; } ?>
                 </select>
             </div>
-            <div id="right_div" class="form-group">';
+            <div id="right_div" class="form-group">
                 <?php $current_year = strftime("%Y", time()); ?>
                 <label for="publishment_date">Data documento.</label>
                 <input class="form-control" type="date" id="publishment_date" name="publishment_date" min="1950-01-01" max="<?php echo date("Y-m-d") ?>" style='width: 25%' required>
