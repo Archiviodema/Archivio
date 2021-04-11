@@ -10,7 +10,10 @@
     <div id="main_div" class="jumbotron jumbotron-fluid" style="width: 50%; margin-top:1%; border-style: solid; border-width: 1px; border-color: #b8b8b8">
     <p>
         <?php
-        echo $_POST['errore'];
+        //echo $_POST['test'];
+        //if(isset($_POST['errore'])) {
+        //    echo $_POST['errore'];
+        //}
         ?>
     <p>
     <h1 class="display-4">Inserisci i dati del documento<br>da inserire.</h1><br>
@@ -69,6 +72,7 @@
         <div class="form-group">
                 <br><br>
                 <span>
+                    <input type="hidden" name="test" value="yes">
                     <button type="reset" class="btn btn-outline-primary mb-2" id="reset_btn">Reimposta</button>
                     <button type="submit" class="btn btn-outline-primary mb-2" id="insert_btn">Inserisci</button>
                 </span>
