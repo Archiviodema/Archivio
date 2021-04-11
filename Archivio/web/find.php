@@ -8,42 +8,39 @@
         $valid_input = true;
         $kws_exist = true;
         if(isset($_POST['keywords'])) $keywords = $_POST['keywords']; else $kws_exist = false;
-        if(isset($_POST['document_tipology'])) $tipologia_doc = $_POST['document_tipology']; else $valid_input = false;
-        if(isset($_POST['document_category'])) $categoria_doc = $_POST['document_category']; else $valid_input = false;
-        if(isset($_POST['document_index'])) $indice_doc = $_POST['document_index']; else $valid_input = false;
-        //if(isset($_POST['document_year'])) $anno_doc = $_POST['document_year']; else $valid_input = false;
-        //if(isset($_POST['document_month'])) $mese_doc = $_POST['document_month']; else $valid_input = false;
-        //if(isset($_POST['document_day'])) $giorno_doc = $_POST['document_day']; else $valid_input = false;
-        if(isset($_POST['publishment_date'])) $data_doc = $_POST['publishment_date']; else $valid_input = false;
+            if(isset($_POST['document_tipology'])) $tipologia_doc = $_POST['document_tipology']; else $valid_input = false;
+            if(isset($_POST['document_category'])) $categoria_doc = $_POST['document_category']; else $valid_input = false;
+            if(isset($_POST['document_index'])) $indice_doc = $_POST['document_index']; else $valid_input = false;
+            if(isset($_POST['document_year'])) $anno_doc = $_POST['document_year']; else $valid_input = false;
+            if(isset($_POST['document_month'])) $mese_doc = $_POST['document_month']; else $valid_input = false;
+            if(isset($_POST['document_day'])) $giorno_doc = $_POST['document_day']; else $valid_input = false;
         // echo $anno_doc . ' ' . $mese_doc . ' ' . $giorno_doc;
         if ($valid_input){
-            $timestamp = strtotime($data_doc);
-            $giorno_doc= date("d", $timestamp);
-            $mese_doc = date("m", $timestamp);
-            $anno_doc = date("Y", $timestamp);
             //$conn = new mysqli($servername, $username, $password, $dbname);
-            // non serve creare ogni volta una connesione
             $keywords = strtolower($keywords);
             $keywords = explode("-", $keywords);
             /*foreach($keywords as $kw){
                 echo $kw . " | ";
             }
             echo "<br><br>";*/
-            $table = "DocumentiDidattica";
             if (startsWith($tipologia_doc, "A")){
                 $table = "DocumentiAmministrazione";
+            }else{
+                $table = "DocumentiDidattica";
             }
-
-            $query = 'SELECT * FROM ' . $table;
+            $query = 'SELECT * FROM ' . $table . '';
             $valid_docs = [];
-            $normalized_docs = $conn->query($query);
+
+            //$docs = $conn->query($query) or die($conn->error);
+            $docs = $conn->insert($query) or die($conn->error);
+            //$normalized_docs = $docs->fetch_assoc();
             if ($kws_exist){
-                foreach($normalized_docs as $doc){ // per OGNI documento doc
+                foreach($docs as $doc){ // per OGNI documento doc
                     foreach($keywords as $kw){  // per ogni parola chiave
                         $lowered_name = strtolower($doc['document_name']);
                         if ($kw === '') array_push($valid_docs, $doc);  // aggiungi il file alla lista dei documenti "validi"
                         else if (strpos($lowered_name, $kw) !== false){    // se contiene una parola chiave, entrambe le stringhe sono interamente minuscole
-                            array_push($valid_docs, $doc);  // aggiungi il file alla lista dei documenti "validi"
+                                array_push($valid_docs, $doc);  // aggiungi il file alla lista dei documenti "validi"
                         }
                         if (in_array($doc, $valid_docs)) break;
                     }
