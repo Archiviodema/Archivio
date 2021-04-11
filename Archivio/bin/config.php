@@ -1,9 +1,8 @@
 <?php
-
-$servername = "localhost:3306";
-$username = "root";
-$password = "Cristian3349256466";
-$dbname = "digital-arc";
+$servername = "89.46.111.134";
+$username = "Sql1520781";
+$password = "Itcatlov_1";
+$dbname = "Sql1520781_4";
 
 $target_dir = "../docs/";
 
