@@ -46,6 +46,8 @@ if(isset($_POST['login'])) {
         $_SESSION['user_name'] = $normalized_user['user_name'];
         $_SESSION['user_surname'] = $normalized_user['user_surname'];
         $_SESSION['user_role'] = $normalized_user['user_role'];
+        $_SESSION['CF'] = $temp_CF;
+        $_SESSION['PWD'] = $pwd;
         header("Location: homepage.php");
         exit();
     }

@@ -1,5 +1,6 @@
 <?php include('../bin/starter.php');?>
 <?php include('../bin/reserved.php');?>
+<?php include('../bin/codice_fiscale.php');?>
 <!DOCTYPE html>
 <html>
 <?php include('../html/header.php');?>
@@ -7,10 +8,9 @@
 
 <body style="background-color: lightgray">
     <?php
-    error_reporting(0);
-    include('../bin/codice_fiscale.php');
-    include('../bin/config.php');
-    session_start();
+    //error_reporting(0);
+    //include('../bin/codice_fiscale.php');
+    //include('../bin/config.php');
     $valid_input = true;
     if (isset($_GET['name'])) $name = $_GET['name'];
     else $valid_input = false;
@@ -26,6 +26,7 @@
     else $valid_input = false;
     if (isset($_GET['password'])) $pwd = $_GET['password'];
     else $valid_input = false;
+    
     if (isset($_GET['role'])){
         if ($_GET['role'] == 'utente'){
             $role = 'none';
@@ -39,6 +40,7 @@
         $date_of_birth_normalized = new DateTime($date_of_birth);
         $codCatastale = (new CodiceCatastale)->calcola($place_of_birth, $initial);
         $CF = (new Calculator)->calcola($name, $surname, $gender, $date_of_birth_normalized, $codCatastale);
+        
         $hashed_pwd = hash("sha512", $CF . $pwd);
         $stato = 0; // 0: Utente da aggiungere in DB, 1: Utente già Presente in DB -> modifica utente (password e ruolo)
         //$conn = new mysqli($servername, $username, $password, $dbname);
@@ -48,7 +50,7 @@
         $query = "SELECT user_CF from Utenti WHERE user_CF='" . $CF . "'";
         //$user = $conn->query($query) or die($conn->error);
         //$normalized_user = $user->fetch_assoc();
-        $normalized_user = query($query);
+        $normalized_user = $conn->query($query);
         if ($normalized_user == null) {
             $stato = 0;
         }else $stato = 1;
@@ -90,13 +92,21 @@
             }else{
                 // correctly done
                 header("Location: auto_redirect_homepage.php");
+                //print_r("CF $CF <br>");
+                //print_r("name $name<br>");
+                //print_r("surname $surname<br>");
+                //print_r("gender $gender<br>");
+                //print_r("date ".$date_of_birth_normalized);
+                //print_r("codCatastale ".$codCatastale);
+                //print_r("date $date_of_birth_normalized<br>");
+                //print_r("codCatastale $codCatastale<br>");
                 exit();
             }
         }else if ($stato == 1){
             $query = "SELECT * from Utenti WHERE user_CF='" . $CF . "'";
             //$user = $conn->query($query) or die($conn->error);
             //$normalized_user = $user->fetch_assoc();
-            $normalized_user = query($query);
+            $normalized_user = $conn->query($query);
             $old_pwd = $normalized_user['user_pwd'];
             $del_query = "DELETE FROM Utenti WHERE user_CF='" . $CF . "'";
             if ($conn->insert($del_query) === TRUE) {

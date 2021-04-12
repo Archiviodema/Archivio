@@ -8,18 +8,24 @@
 <body onload="bind_btn()" style="background-color: lightgray">
     <?php
             //$conn = new mysqli($servername, $username, $password, $dbname);
-            $query = "SELECT user_CF, user_name, user_surname, user_pwd, user_role from Utenti WHERE user_CF='" . $session_user->get_CF() . "' and user_pwd='" . $session_user->get_pwd() . "' and user_role='admin'";
-            $_is_admin = $conn->query($query);
+            //print_r($session_user->get_CF());
+            //print_r($session_password->get_pwd());
+            //print_r($_SESSION['CF']);
+            //print_r($_SESSION['PWD']);
+            $query = "SELECT user_CF, user_name, user_surname, user_pwd, user_role from Utenti WHERE user_CF='" . $_SESSION['CF'] . "' and user_pwd='" . $_SESSION['PWD'] . "' and user_role='admin'";
+            //$_is_admin = $conn->query($query);
             //$is_admin = $_is_admin->fetch_assoc();
+            $is_admin = $conn->query($query);
             if($is_admin != null){
                 // the current user is an admin
+                
                 ?>
 
                 <center>
                     <div id="main_div" class="jumbotron jumbotron-fluid" style="margin-left: 25%; margin-right: 25%; margin-top:1%; border-style: solid; border-width: 1px; border-color: #b8b8b8">
                         <div id="text_div" class="container">
                             <h1 class="display-4">Inserimento Utente.</h1>
-                            <p class="lead">Inserisci i dati dell\'utente.</p>
+                            <p class="lead">Inserisci i dati dell'utente.</p>
                             <hr class="my-4">
                             <div id='input_div'>
                                 <form  class='center' style="display: inline" class="form-inline" action="add.php" method="GET">

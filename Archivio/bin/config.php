@@ -36,14 +36,23 @@ class User
 class CodiceCatastale
 {
     public function calcola($citta, $sigla){
-        $str = file_get_contents( __DIR__.'/comuni.json');
+        $str = file_get_contents(__DIR__. '/../dati/comuni.json');
+        //print_r($str);
         $json = json_decode($str, true); // decode the JSON into an associative array
+        //print_r($json);
         $codCatastale = '';
-        foreach($json as $item){ 
-            if ($item['nome'] == $citta && $item['sigla'] == $sigla){
-                $codCatastale = $item['codiceCatastale'];
+
+        if (is_array($json) || is_object($json))
+        {
+            foreach($json as $item){ 
+                if ($item['nome'] == $citta && $item['sigla'] == $sigla){
+                    $codCatastale = $item['codiceCatastale'];
+                }
             }
         }
+        else {
+        }
+        
         // echo $codCatastale;
         return $codCatastale;
     }
